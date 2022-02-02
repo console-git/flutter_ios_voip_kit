@@ -81,7 +81,8 @@ class CallKitCenter: NSObject {
         self.uuid = UUID(uuidString: uuidString)!
         let update = CXCallUpdate()
         update.remoteHandle = CXHandle(type: .generic, value: callerName)
-        update.hasVideo = self.supportVideo
+        // update.hasVideo = self.supportVideo
+        update.hasVideo = true
         update.supportsHolding = false
         update.supportsGrouping = false
         update.supportsUngrouping = true
