@@ -70,11 +70,12 @@ class VoIPCenter: NSObject {
         self.callKitCenter = CallKitCenter()
         
         if let path = Bundle.main.path(forResource: "Info", ofType: "plist"), let plist = NSDictionary(contentsOfFile: path) {
-            self.audioSessionMode = ((plist["FIVKAudioSessionMode"] as? String) ?? "audio") == "video" ? .videoChat : .voiceChat
+            self.audioSessionMode =  .videoChat
+            // self.audioSessionMode = ((plist["FIVKAudioSessionMode"] as? String) ?? "audio") == "video" ? .videoChat : .voiceChat
             self.ioBufferDuration = plist["FIVKIOBufferDuration"] as? TimeInterval ?? 0.005
             self.audioSampleRate = plist["FIVKAudioSampleRate"] as? Double ?? 44100.0
         } else {
-            self.audioSessionMode = .voiceChat
+            self.audioSessionMode = .videoChat
             self.ioBufferDuration = TimeInterval(0.005)
             self.audioSampleRate = 44100.0
         }
