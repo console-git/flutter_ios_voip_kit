@@ -49,7 +49,8 @@ class CallKitCenter: NSObject {
 
     func setup(delegate: CXProviderDelegate) {
         let providerConfiguration = CXProviderConfiguration(localizedName: self.localizedName)
-        providerConfiguration.supportsVideo = self.supportVideo
+        providerConfiguration.supportsVideo = true
+        // providerConfiguration.supportsVideo = self.supportVideo
         providerConfiguration.maximumCallsPerCallGroup = 1
         providerConfiguration.maximumCallGroups = maximumCallGroups
         providerConfiguration.supportedHandleTypes = [.generic]
