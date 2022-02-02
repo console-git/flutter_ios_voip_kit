@@ -35,13 +35,14 @@ class CallKitCenter: NSObject {
             let plist = NSDictionary(contentsOfFile: path)
             self.iconName = plist?["FIVKIconName"] as? String ?? "AppIcon-VoIPKit"
             self.localizedName = plist?["FIVKLocalizedName"] as? String ?? "App Name"
-            self.supportVideo = plist?["FIVKSupportVideo"] as? Bool ?? false
+            self.supportVideo = true
+            // self.supportVideo = plist?["FIVKSupportVideo"] as? Bool ?? false
             self.skipRecallScreen = plist?["FIVKSkipRecallScreen"] as? Bool ?? false
             self.maximumCallGroups = plist?["FIVKMaximumCallGroups"] as? Int ?? 1
         } else {
             self.iconName = "AppIcon-VoIPKit"
             self.localizedName = "App Name"
-            self.supportVideo = false
+            self.supportVideo = true
             self.skipRecallScreen = false
         }
         super.init()
@@ -63,7 +64,8 @@ class CallKitCenter: NSObject {
         self.uuid = UUID(uuidString: uuidString)!
         let handle = CXHandle(type: .generic, value: targetName)
         let startCallAction = CXStartCallAction(call: self.uuid, handle: handle)
-        startCallAction.isVideo = self.supportVideo
+        startCallAction.isVideo = true
+        // startCallAction.isVideo = self.supportVideo
         let transaction = CXTransaction(action: startCallAction)
         self.controller.request(transaction) { error in
             if let error = error {
