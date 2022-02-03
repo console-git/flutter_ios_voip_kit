@@ -58,14 +58,6 @@ class CallKitCenter: NSObject {
         providerConfiguration.iconTemplateImageData = UIImage(named: self.iconName)?.pngData()
         self.provider = CXProvider(configuration: providerConfiguration)
         self.provider?.setDelegate(delegate, queue: nil)
-        
-        let startCallAction = CXStartCallAction(call: self.uuid, handle: handle)
-        startCallAction.isVideo = true
-        let transaction = CXTransaction(action: CXStartCallAction(call: callUUID!, handle: CXHandle(type: .generic, value: "Huddl.ai")))
-        callController.request(transaction, completion: { error in
-            print("Error is : \(String(describing: error))")
-        })
-
     }
 
     func startCall(uuidString: String, targetName: String) {
