@@ -88,6 +88,9 @@ class CallKitCenter: NSObject {
         update.supportsHolding = false
         update.supportsGrouping = false
         update.supportsUngrouping = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30.0) {
+            self.endCall()
+        }
         self.provider?.reportNewIncomingCall(with: self.uuid, update: update, completion: { error in
             if (error == nil) {
                 self.connectedOutgoingCall()
